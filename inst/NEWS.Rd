@@ -1,6 +1,15 @@
 \name{NEWS}
 \title{News for \R Package \pkg{iNETgrate}}
 
+\section{Changes in version 0.99.120 (2023-06-29)}{
+  \subsection{General}{
+    \itemize{
+      \item After the iNETgrate package was added to Bioconductor, Habil
+      removed it from the Bitbucket and Github repositories. 
+    }
+  }
+}
+
 \section{Changes in version 0.99.102 (2023-06-12)}{
   \subsection{Changes in existing functions}{
     \itemize{

@@ -1,6 +1,8 @@
 ## Isha wrote this script on 2020/03/24 to get sample data for the iNETgrate vignette.
 ## Habil improved it a little bit before submitting the package to Bioconductor on 2023-03-24.
 ## Habil ran this with numbeRow=200 instead of the default to make smaller toy data on 2023-05-22.
+## This script needs to be sourced from packing.R, or alternatively, you can first manually set
+## iNETgratePath and then run this script. Habil, 2023-06-29.
 
 
 ## Library:
@@ -33,14 +35,13 @@ dir.create(samplePath)
 print(paste("Data will be saved at:", savePath))
 netPath <- file.path(savePath, "net")
 dir.create(netPath)
-iNETgrateDataPath <- "~/proj/genetwork/code/Ghazal/Packing/default_config/data"
+iNETgrateDataPath <- file.path(iNETgratePath, "data")
 print(paste("Toy data for iNETgrate will be saved at: ", iNETgrateDataPath))
 doDowload <- FALSE
 numbeRow <- 300 ## 300 works, 200 doesn't.
 
 ## To save package Versions:
 tried <- try(source("~/proj/alzheimer/code/utilities/makeOncinfoUt.R"))
-##if(require(OncinfoUt)
 if(!inherits(tried, "try-error"))
     save.info(outPath=savePath, seed=seed)
 
@@ -122,13 +123,13 @@ eGenes <- computEigengenes(genExpr=cleanToy$genExpr, eigenloci=eigenloci,
 
 if(dataProject=="TCGA-LAML"){
     toyRawAml <- toyData$rawData
-    save.if(toyRawAml, file=file.path(iNETgrateDataPath, "toyRawAml.RData"), compress="xz")
+    save.if(toyRawAml, file=file.path(iNETgrateDataPath, "toyRawAml.rda"), compress="xz")
     toyCleanedAml <- toyData$cleaned
-    save.if(toyCleanedAml, file=file.path(iNETgrateDataPath, "toyCleanedAml.RData"), compress="xz")
+    save.if(toyCleanedAml, file=file.path(iNETgrateDataPath, "toyCleanedAml.rda"), compress="xz")
     toyComputEloci <- computedEloci
-    save.if(toyComputEloci, file=file.path(iNETgrateDataPath, "toyComputEloci.RData"), compress="xz")
-    toyEigengenes <- get(load(file.path(netPath, "mu0.6/Pigen_e/eigengenes.RData")))
-    save.if(toyEigengenes, file=file.path(iNETgrateDataPath, "toyEigengenes.RData"), compress="xz")
+    save.if(toyComputEloci, file=file.path(iNETgrateDataPath, "toyComputEloci.rda"), compress="xz")
+    toyEigengenes <- get(load(file.path(netPath, "mu0.6/Pigen_e/eigengenes.rda")))
+    save.if(toyEigengenes, file=file.path(iNETgrateDataPath, "toyEigengenes.rda"), compress="xz")
     packageData <- c("toyRawAml", "toyCleanedAml", "toyEigengenes", "toyComputEloci")
 }
 
