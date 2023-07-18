@@ -1,12 +1,12 @@
 Package: iNETgrate
 Type: Package
 Title: Integrates DNA methylation data with gene expression in a single gene network
-Version: 0.99.124
+Version: 0.99.126
 Date: 2023-03-24
 Authors@R: c(
+    person("Ghazal", "Ebrahimi", role = "aut"),
     person("Isha", "Mehta", role = "aut",
     comment = c(ORCID = "0000-0002-6009-0787")),
-    person("Ghazal", "Ebrahimi", role = "aut"),
     person("Hanie", "Samimi", role = "aut"),
     person("Habil", "Zare", email = "zare@u.washington.edu",
     role = c("aut", "cre"), comment = c(ORCID = "0000-0001-5902-6238")))

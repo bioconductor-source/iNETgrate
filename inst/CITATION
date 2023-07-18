@@ -18,5 +18,5 @@ citEntry(entry="Article",
         month = "?",
 
         textVersion = paste("Sogand Sajedi et al.", "(2023) ",  
-        "iNETgrate: How to leverage epigenome data when they are missing?, Sajedi et al., PLOS Computational Biology. ", 
+        "'iNETgrate': integrating DNA methylation and gene expression data in a single gene network, Sajedi et al., In process. ", 
         "URL: https://bmcmedgenomics.biomedcentral.com/articles/10.1186/s12920-017-0253-6", ".", sep=""))
