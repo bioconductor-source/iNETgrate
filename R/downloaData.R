@@ -1,5 +1,5 @@
 downloaData <- function(dataProject, savePath, doDnam=TRUE, doExpr=TRUE,
-                        doClinical=TRUE, doMirna=FALSE, verbose=0){
+                        doClinical=TRUE, doMirna=FALSE, offset0=NA, verbose=0){
     ## Download data from TCGA portal.
     ## Inputs:
     ## dataProject: A named for project name in TCGA portal.
@@ -79,10 +79,13 @@ downloaData <- function(dataProject, savePath, doDnam=TRUE, doExpr=TRUE,
         TCGAbiolinks::GDCdownload(query, directory=savePath)
         Data <- TCGAbiolinks::GDCprepare(query, directory=savePath)
         genExpr <- SummarizedExperiment::assay(Data, "fpkm_unstrand")
-        offset0 <- unique(sort(genExpr))[2]
-        message.if(me=paste("Log-transform after adding the smallest non-zero value:",
-                            offset0), verbose=verbose-2)
-        genExpr <- log10(genExpr+offset0)
+        if(!is.null(offset0)){
+            if(is.na(offset0))
+                offset0 <- unique(sort(genExpr))[2]
+            message.if(me=paste("Log-transform after adding the smallest non-zero value:",
+                                offset0), verbose=verbose-2)
+            genExpr <- log10(genExpr+offset0)
+        }
         result[["genExpr"]] <- genExpr
         exprInfo <- SummarizedExperiment::colData(Data)
         result[["genExprSampleInfo"]] <- exprInfo

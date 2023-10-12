@@ -9,7 +9,7 @@
 
 \usage{
 downloaData(dataProject, savePath, doDnam=TRUE,  doExpr=TRUE, 
-              doClinical=TRUE, doMirna=FALSE, verbose=0)}
+              doClinical=TRUE, doMirna=FALSE, offset0=NA, verbose=0)}
 
 \arguments{
   \item{dataProject}{
@@ -32,6 +32,11 @@ downloaData(dataProject, savePath, doDnam=TRUE,  doExpr=TRUE,
   \item{doMirna}{
     Accepts a Boolean value, where \code{TRUE} indicates micro RNA data will be downloaded.
     Default is set to \code{FALSE}.}
+  \item{offset0}{
+    A small value added to the expression levels before a logarithmic
+    transformation in base 10 is applied. If \code{NA}, the smallest
+    non-zero value in the data is used. Set to \code{NULL} to disable
+    logarithmic transformation.}
 
   \item{verbose}{
     The integer level of verbosity. \code{0} means silent, and higher values produce 
@@ -45,7 +50,8 @@ Some of the list elements are:
                   columns are clinical parameters.}
 
   \item{genExpr}{A data frame of gene expression data where rows are genes and 
-                 columns are sample IDs.}
+                 columns are sample IDs. A logarithmic transformation in
+                 base 10 may be applied depending on the value of \code{offset0}.}
 
   \item{rawDnam}{A SummarizedExperiment object with DNA methylation data.}
 
